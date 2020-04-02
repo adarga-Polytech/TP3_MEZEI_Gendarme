@@ -144,23 +144,20 @@ int main(void)
 	  if(flag==1)
 	  {
 
-		  for(j=0;j<180;j++)
-			   {
-			      while(flag_tim3!=1)
-			      {
-			  	  GPIOA->ODR &=Motif_Afficheur[j];
-			      }
-			      flag_tim3=0;
-			      while(flag_tim3!=1)
-			      {
-				   GPIOA->ODR |=Motif_Afficheur[160];
-			      }
-			      flag_tim3=0;
-				   j++;
+		  flag=0;
 
-			  }
+		                    if(flag_tim3 ==1)
+		                    {
+		                      flag_tim3=0;
+		                      GPIOA->ODR &=Motif_Afficheur[j];
+		                      GPIOB->ODR = ~0xFF<<8;
+		                      GPIOA->ODR |=Motif_Afficheur[160];
+		                      GPIOB->ODR = ~0xFF<<8;
+		                      j++;
+		                    }
+
 		  j=0;
-		  flag_tim3=0;
+
 	  }
   }
   /* USER CODE END 3 */
